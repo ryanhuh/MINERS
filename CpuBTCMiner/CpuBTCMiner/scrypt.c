@@ -757,7 +757,8 @@ int scanhash_scrypt(int thr_id, uint32_t *pdata,
 #if 1//debug
         char data_str[2 * sizeof(hash) + 1];
         bin2hex(data_str, (unsigned char *)hash, 80);
-        applog(LOG_INFO,"[%d:%d]Caled Hash: %s", n, max_nonce ,data_str);
+        //applog(LOG_INFO,"[%d:%d]Caled Hash: %s", n, max_nonce ,data_str);
+        applog(LOG_INFO,"[%d:%d]Caled count", n, max_nonce);
 #endif
 	} while (n < max_nonce && !work_restart[thr_id].restart);
 	

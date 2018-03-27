@@ -173,7 +173,7 @@ static unsigned char pk_script[25];
 static char coinbase_sig[101] = "";
 
 //비교 데이타
-static uint32_t _blockCurTime = 0;
+static int64_t _blockCurTime = 0;
 
 struct option_help {
 	const char	*name;
@@ -290,7 +290,7 @@ struct work {
     uint32_t data[32];
     uint32_t target[8];
     
-    int height;
+    int64_t height;
     char *txs;
     char *workid;
     
@@ -372,8 +372,10 @@ static bool jobj_binary(const json_t *obj, const char *key,
 
 static bool gbt_work_decode(const json_t *val, struct work *work)
 {
-    int i, n;
-    uint32_t version, curtime, bits;
+    int i;
+    int64_t n;
+    int64_t version, curtime;
+    uint32_t bits;
     uint32_t prevhash[8];
     uint32_t target[8];
     int cbtx_size;
@@ -417,69 +419,43 @@ static bool gbt_work_decode(const json_t *val, struct work *work)
     }
     
     tmp = json_object_get(val, "height");
-#if 0// it was pass by float.
-    if (!tmp || !json_is_integer(tmp)) {
-        applog(LOG_ERR, "JSON invalid height");
-        goto out;
-    }
-    work->height = json_integer_value(tmp);
-#else
-    if(!tmp || !json_is_real(tmp)){
+    if(!tmp || !json_is_number(tmp)){
             applog(LOG_ERR, "JSON invalid height");
             goto out;
     }
-    work->height = (int)json_real_value(tmp);
-#endif
-    
-#if 0
-    tmp = json_object_get(val, "version");
-    if (!tmp || !json_is_integer(tmp)) {
-        applog(LOG_ERR, "JSON invalid version");
-        goto out;
-    }
-    version = json_integer_value(tmp);
-#else
-    tmp = json_object_get(val, "version");
-    if (!tmp || !json_is_real(tmp)) {
-        applog(LOG_ERR, "JSON invalid version");
-        goto out;
-    }
-    version = (int)json_real_value(tmp);
+    work->height = (int64_t)json_number_value(tmp); //(int)json_real_value(tmp);
 
-#endif
+    tmp = json_object_get(val, "version");
+    if (!tmp || !json_is_number(tmp)) {
+        applog(LOG_ERR, "JSON invalid version");
+        goto out;
+    }
+    version = json_number_value(tmp);
     
     if (unlikely(!jobj_binary(val, "previousblockhash", prevhash, sizeof(prevhash)))) {
         applog(LOG_ERR, "JSON invalid previousblockhash");
         goto out;
     }
-#if 0
+
     tmp = json_object_get(val, "curtime");
-    if (!tmp || !json_is_integer(tmp)) {
+    if (!tmp || !json_is_number(tmp)) {
         applog(LOG_ERR, "JSON invalid curtime");
         goto out;
     }
-    curtime = json_integer_value(tmp);
-#else
-    tmp = json_object_get(val, "curtime");
-    if (!tmp || !json_is_real(tmp)) {
-        applog(LOG_ERR, "JSON invalid curtime");
-        goto out;
-    }
-    curtime = (int)json_real_value(tmp);
-    _blockCurTime = curtime;
-#endif
+    curtime = (int64_t)json_number_value(tmp);
+    
     if (unlikely(!jobj_binary(val, "bits", &bits, sizeof(bits)))) {
         applog(LOG_ERR, "JSON invalid bits");
         goto out;
     }
 #if 1
     tmp = json_object_get(val, "mintime");
-    if (!tmp || !json_is_real(tmp)) {
+    if (!tmp || !json_is_number(tmp)) {
         applog(LOG_ERR, "JSON invalid mintime");
     }
     else
     {
-        _blockCurTime = (int)json_real_value(tmp);
+        _blockCurTime = (int64_t)json_number_value(tmp);
     }
 #endif
     
@@ -521,22 +497,14 @@ static bool gbt_work_decode(const json_t *val, struct work *work)
                 applog(LOG_ERR, "No payout address provided");
             goto out;
         }
-#if 1
+
         tmp = json_object_get(val, "coinbasevalue");
         if (!tmp || !json_is_number(tmp)) {
             applog(LOG_ERR, "JSON invalid coinbasevalue");
             goto out;
         }
         cbvalue = json_is_integer(tmp) ? json_integer_value(tmp) : json_number_value(tmp);
-#else
-        tmp = json_object_get(val, "coinbasevalue");
-        if (!tmp || !json_is_real(tmp)) {
-            applog(LOG_ERR, "JSON invalid coinbasevalue");
-            goto out;
-        }
-        cbvalue = json_is_real(tmp) ? (int)json_real_value(tmp) : json_number_value(tmp);
 
-#endif
         cbtx = malloc(256);
         le32enc((uint32_t *)cbtx, 1); /* version */
         cbtx[4] = 1; /* in-counter */
@@ -864,7 +832,7 @@ static const char *rpc_req =
 
 #if 1 // pool
 static const char *rpc_req =
-"{\"method\": \"getblocktemplate\", \"params\": [{  \"capabilities\":  [\"coinbasetxn\",\"workid\", \"coinbase/append\"]}]}\r\n";
+"{\"id\":-1 ,\"method\": \"getblocktemplate\", \"params\": [{  \"capabilities\":  [\"coinbasetxn\",\"workid\", \"coinbase/append\"], \"rules\": [\"segwit\"]}]}\r\n";
 #else
 #define GBT_CAPABILITIES "[\"coinbasetxn\", \"coinbasevalue\", \"longpoll\", \"workid\"]"
 #define GBT_RULES "[\"segwit\"]"
@@ -1430,11 +1398,11 @@ static void *longpoll_thread(void *userdata)
                 }
             }
             else{
-                uint32_t nCurTime = (int)json_real_value(tmp);
+                int64_t nCurTime = (int)json_number_value(tmp);
                 if(_blockCurTime == nCurTime)
                     continue;
                 
-                applog(LOG_INFO, "LONGPOLL detected new block nCurTime= %u", nCurTime);
+                //applog(LOG_INFO, "LONGPOLL detected %llu new block nCurTime= %llu", _blockCurTime, nCurTime);
             }
             
 #endif
