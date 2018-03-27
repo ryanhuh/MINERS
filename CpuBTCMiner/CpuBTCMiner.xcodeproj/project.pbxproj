@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D49CC74206A8EB100A27718 /* cpu-miner.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D49CC70206A8EB000A27718 /* cpu-miner.c */; };
+		0D49CC75206A8EB100A27718 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D49CC71206A8EB100A27718 /* sha2.c */; };
+		0D49CC76206A8EB100A27718 /* scrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D49CC72206A8EB100A27718 /* scrypt.c */; };
+		0D49CC77206A8EB100A27718 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D49CC73206A8EB100A27718 /* util.c */; };
+		0D49CC7A206A900000A27718 /* libbase58.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D49CC79206A900000A27718 /* libbase58.a */; };
+		0D49CC7C206A901300A27718 /* libblkmaker-0.1.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D49CC7B206A901300A27718 /* libblkmaker-0.1.8.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0D49CC64206A8D3100A27718 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0D49CC66206A8D3100A27718 /* CpuBTCMiner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CpuBTCMiner; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D49CC70206A8EB000A27718 /* cpu-miner.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "cpu-miner.c"; sourceTree = "<group>"; };
+		0D49CC71206A8EB100A27718 /* sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha2.c; sourceTree = "<group>"; };
+		0D49CC72206A8EB100A27718 /* scrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scrypt.c; sourceTree = "<group>"; };
+		0D49CC73206A8EB100A27718 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		0D49CC79206A900000A27718 /* libbase58.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbase58.a; path = ../../libbase58/.libs/libbase58.a; sourceTree = "<group>"; };
+		0D49CC7B206A901300A27718 /* libblkmaker-0.1.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libblkmaker-0.1.8.dylib"; path = "../../libblkmaker/lib/libblkmaker-0.1.8.dylib"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D49CC63206A8D3100A27718 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D49CC7A206A900000A27718 /* libbase58.a in Frameworks */,
+				0D49CC7C206A901300A27718 /* libblkmaker-0.1.8.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D49CC5D206A8D3100A27718 = {
+			isa = PBXGroup;
+			children = (
+				0D49CC68206A8D3100A27718 /* CpuBTCMiner */,
+				0D49CC67206A8D3100A27718 /* Products */,
+				0D49CC78206A900000A27718 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0D49CC67206A8D3100A27718 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D49CC66206A8D3100A27718 /* CpuBTCMiner */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D49CC68206A8D3100A27718 /* CpuBTCMiner */ = {
+			isa = PBXGroup;
+			children = (
+				0D49CC70206A8EB000A27718 /* cpu-miner.c */,
+				0D49CC72206A8EB100A27718 /* scrypt.c */,
+				0D49CC71206A8EB100A27718 /* sha2.c */,
+				0D49CC73206A8EB100A27718 /* util.c */,
+			);
+			path = CpuBTCMiner;
+			sourceTree = "<group>";
+		};
+		0D49CC78206A900000A27718 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D49CC7B206A901300A27718 /* libblkmaker-0.1.8.dylib */,
+				0D49CC79206A900000A27718 /* libbase58.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0D49CC65206A8D3100A27718 /* CpuBTCMiner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D49CC6D206A8D3100A27718 /* Build configuration list for PBXNativeTarget "CpuBTCMiner" */;
+			buildPhases = (
+				0D49CC62206A8D3100A27718 /* Sources */,
+				0D49CC63206A8D3100A27718 /* Frameworks */,
+				0D49CC64206A8D3100A27718 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CpuBTCMiner;
+			productName = CpuBTCMiner;
+			productReference = 0D49CC66206A8D3100A27718 /* CpuBTCMiner */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0D49CC5E206A8D3100A27718 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Ryan Huh";
+				TargetAttributes = {
+					0D49CC65206A8D3100A27718 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 0D49CC61206A8D3100A27718 /* Build configuration list for PBXProject "CpuBTCMiner" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0D49CC5D206A8D3100A27718;
+			productRefGroup = 0D49CC67206A8D3100A27718 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0D49CC65206A8D3100A27718 /* CpuBTCMiner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D49CC62206A8D3100A27718 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D49CC77206A8EB100A27718 /* util.c in Sources */,
+				0D49CC74206A8EB100A27718 /* cpu-miner.c in Sources */,
+				0D49CC76206A8EB100A27718 /* scrypt.c in Sources */,
+				0D49CC75206A8EB100A27718 /* sha2.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0D49CC6B206A8D3100A27718 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0D49CC6C206A8D3100A27718 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0D49CC6E206A8D3100A27718 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FVDXFR7QMV;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../cpuminer/compat/jansson",
+					/Users/ryanhuh/DEV/MINER/libblkmaker,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/ryanhuh/DEV/MINER/lib,
+					/usr/local/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lpthread",
+					"-lcurl",
+					"-ljansson",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0D49CC6F206A8D3100A27718 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FVDXFR7QMV;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../cpuminer/compat/jansson",
+					/Users/ryanhuh/DEV/MINER/libblkmaker,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/ryanhuh/DEV/MINER/lib,
+					/usr/local/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lpthread",
+					"-lcurl",
+					"-ljansson",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D49CC61206A8D3100A27718 /* Build configuration list for PBXProject "CpuBTCMiner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D49CC6B206A8D3100A27718 /* Debug */,
+				0D49CC6C206A8D3100A27718 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D49CC6D206A8D3100A27718 /* Build configuration list for PBXNativeTarget "CpuBTCMiner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D49CC6E206A8D3100A27718 /* Debug */,
+				0D49CC6F206A8D3100A27718 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0D49CC5E206A8D3100A27718 /* Project object */;
+}
