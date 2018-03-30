@@ -832,7 +832,9 @@ static const char *rpc_req =
 
 #if 1 // pool
 static const char *rpc_req =
-"{\"id\":-1 ,\"method\": \"getblocktemplate\", \"params\": [{  \"capabilities\":  [\"coinbasetxn\",\"workid\", \"coinbase/append\"], \"rules\": [\"segwit\"]}]}\r\n";
+"{\"id\":-1 ,\"method\": \"getblocktemplate\", \"params\": [{  \"capabilities\":  [\"coinbasetxn\",\"coinbasevalue\", \"longpoll\",  \"workid\"], \"rules\": [\"segwit\"]}]}\r\n";
+
+//"{\"id\":-1 ,\"method\": \"getblocktemplate\", \"params\": [{  \"capabilities\":  [\"coinbasetxn\",\"workid\", \"coinbase/append\"], \"rules\": [\"segwit\"]}]}\r\n";
 #else
 #define GBT_CAPABILITIES "[\"coinbasetxn\", \"coinbasevalue\", \"longpoll\", \"workid\"]"
 #define GBT_RULES "[\"segwit\"]"
