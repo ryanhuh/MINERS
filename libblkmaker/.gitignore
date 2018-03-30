@@ -15,7 +15,6 @@ example
 configure
 Makefile
 Makefile.in
-*.la
 *.pc
 ltmain.sh
 libtool
