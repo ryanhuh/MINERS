@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "862"
             endingLineNumber = "862"
-            landmarkName = "get_upstream_work"
+            landmarkName = "workio_submit_work"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

@@ -156,7 +156,6 @@ pthread_mutex_t applog_lock;
 static struct work g_work;
 static time_t g_work_time;
 static pthread_mutex_t g_work_lock;
-static bool submit_old = false;
 static char *lp_id;
 
 bool have_stratum = false;
@@ -656,12 +655,12 @@ static bool gbt_work_decode(const json_t *val, struct work *work)
     }
     
     /* assemble block header */
-    work->data[0] = swab32(version);
+    work->data[0] = swab32((uint32_t)version);
     for (i = 0; i < 8; i++)
         work->data[8 - i] = le32dec(prevhash + i);
     for (i = 0; i < 8; i++)
         work->data[9 + i] = be32dec((uint32_t *)merkle_tree[0] + i);
-    work->data[17] = swab32(curtime);
+    work->data[17] = swab32((uint32_t)curtime);
     work->data[18] = le32dec(&bits);
     memset(work->data + 19, 0x00, 52);
     work->data[20] = 0x80000000;
@@ -707,57 +706,6 @@ out:
     return rc;
 }
 
-
-
-static bool work_decode(const json_t *val, struct work *work)
-{
-#if 0
-	if (unlikely(!jobj_binary(val, "midstate",
-			 work->midstate, sizeof(work->midstate)))) {
-		applog(LOG_ERR, "JSON inval midstate");
-		goto err_out;
-	}
-
-	if (unlikely(!jobj_binary(val, "data", work->data, sizeof(work->data)))) {
-		applog(LOG_ERR, "JSON inval data");
-		goto err_out;
-	}
-
-	if (unlikely(!jobj_binary(val, "hash1", work->hash1, sizeof(work->hash1)))) {
-		applog(LOG_ERR, "JSON inval hash1");
-		goto err_out;
-	}
-
-	if (unlikely(!jobj_binary(val, "target", work->target, sizeof(work->target)))) {
-		applog(LOG_ERR, "JSON inval target");
-		goto err_out;
-	}
-    memset(work->hash, 0, sizeof(work->hash));
-#else
-    if (unlikely(!jobj_binary(val, "data", work->data, sizeof(work->data)))) {
-        applog(LOG_ERR, "JSON inval data");
-        goto err_out;
-    }
-    if (unlikely(!jobj_binary(val, "target", work->target, sizeof(work->target)))) {
-        applog(LOG_ERR, "JSON inval target");
-        goto err_out;
-    }
-
-    for(int n=0;n<ARRAY_SIZE(work->data);n++)
-    {
-        work->data[n] = le32dec(work->data + n);
-    }
-    for(int n=0;n<ARRAY_SIZE(work->target);n++)
-        work->target[n] = le32dec(work->target +n);
-    
-#endif
-
-	return true;
-
-err_out:
-	return false;
-}
-
 static bool submit_upstream_work(CURL *curl, const struct work *work)
 {
 	char *hexstr = NULL;
@@ -772,7 +720,7 @@ static bool submit_upstream_work(CURL *curl, const struct work *work)
         char *req;
         
         for (i = 0; i < ARRAY_SIZE(work->data); i++)
-            be32enc(work->data + i, work->data[i]);
+            be32enc((void*)( work->data + i), work->data[i]);
         bin2hex(data_str, (unsigned char *)work->data, 80);
         if (work->workid) {
             char *params;
@@ -856,11 +804,7 @@ static bool get_upstream_work(CURL *curl, struct work *work)
 	if (!val)
 		return false;
 
-#if 0
-    rc = work_decode(json_object_get(val, "result"), work);
-#else
     rc = gbt_work_decode(json_object_get(val,"result"),work);
-#endif
 	json_decref(val);
 
 	return rc;
@@ -1209,7 +1153,7 @@ static void *miner_thread(void *userdata)
     }
     
     while (1) {
-        unsigned long hashes_done;
+        uint64_t hashes_done;
         struct timeval tv_start, tv_end, diff;
         int64_t max64;
         int rc;

@@ -3,6 +3,27 @@
 
 #include "cpuminer-config.h"
 
+#define USER_AGENT PACKAGE_NAME "/" PACKAGE_VERSION
+#define MAX_CPUS 16
+
+#ifdef _MSC_VER
+
+#undef USE_ASM  /* to fix */
+
+#ifdef NOASM
+#undef USE_ASM
+#endif
+
+/* missing arch defines for msvc */
+#if defined(_M_X64)
+#define __i386__ 1
+#define __x86_64__ 1
+#elif defined(_M_X86)
+#define __i386__ 1
+#endif
+
+#endif /* _MSC_VER */
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/time.h>
@@ -246,6 +267,8 @@ extern bool want_longpoll;
 extern bool have_longpoll;
 struct thread_q;
 
+int scanhash_scrypt(int thr_id, uint32_t *pdata,unsigned char *scratchbuf, const uint32_t *ptarget, uint32_t max_nonce, uint64_t *hashes_done, uint32_t N);
+
 struct work_restart {
 	volatile unsigned long	restart;
 	char			padding[128 - sizeof(unsigned long)];
@@ -266,10 +289,8 @@ extern void tq_freeze(struct thread_q *tq);
 extern void tq_thaw(struct thread_q *tq);
 
 extern unsigned char *scrypt_buffer_alloc(int N);
-
-
 extern int scanhash_sha256d(int thr_id, uint32_t *pdata,
-                            const uint32_t *ptarget, uint32_t max_nonce, unsigned long *hashes_done);
+                            const uint32_t *ptarget, uint32_t max_nonce, uint64_t *hashes_done);
 
 void sha256_init(uint32_t *state);
 void sha256_transform(uint32_t *state, const uint32_t *block, int swap);

@@ -35,6 +35,9 @@
 		0D49CC73206A8EB100A27718 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
 		0D49CC79206A900000A27718 /* libbase58.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbase58.a; path = ../../libbase58/.libs/libbase58.a; sourceTree = "<group>"; };
 		0D49CC7B206A901300A27718 /* libblkmaker-0.1.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libblkmaker-0.1.8.dylib"; path = "../../libblkmaker/lib/libblkmaker-0.1.8.dylib"; sourceTree = "<group>"; };
+		0D6B14D8206F0E5D00AB923A /* elist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = elist.h; sourceTree = "<group>"; };
+		0D6B14D9206F0E5D00AB923A /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
+		0D6B14DA206F0E5D00AB923A /* miner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miner.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,9 @@
 		0D49CC68206A8D3100A27718 /* CpuBTCMiner */ = {
 			isa = PBXGroup;
 			children = (
+				0D6B14D9206F0E5D00AB923A /* compat.h */,
+				0D6B14D8206F0E5D00AB923A /* elist.h */,
+				0D6B14DA206F0E5D00AB923A /* miner.h */,
 				0D49CC70206A8EB000A27718 /* cpu-miner.c */,
 				0D49CC72206A8EB100A27718 /* scrypt.c */,
 				0D49CC71206A8EB100A27718 /* sha2.c */,
